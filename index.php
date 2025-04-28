@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    require "config.php";
+    require "./config/config.php";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
@@ -14,7 +14,7 @@
            if($user && password_verify($password, $user["s_senha_usuario"])){
                 $_SESSION["user_id"] = $user["id_usuario"];
                 $_SESSION["user_email"] = $user["s_email_usuario"];
-                header("Location: home.php");
+                header("Location: ./public/home.php");
                 exit();
            }else {
             $erro = "E-mail ou senha incorretos.";
@@ -153,7 +153,8 @@
         <input type="password" name="password" id="password" class="form__input" placeholder="Digite sua senha" required>
         <button type="submit" class="form__button">Entrar</button>
         <div class="form__footer">
-            Não tem uma conta? <a href="/Sistema-de-Pedidos-Por-Telefone-em-PHP/register.php">Cadastre-se</a>
+            Não tem uma conta? <a href="public/register.php" target="_blank">Cadastre-se</a>
+            <!-- Adicionado target="_blank" para abrir em nova aba -->
         </div>
     </form>
 </body>
