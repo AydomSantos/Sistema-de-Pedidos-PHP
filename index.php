@@ -153,7 +153,7 @@
         <input type="password" name="password" id="password" class="form__input" placeholder="Digite sua senha" required>
         <button type="submit" class="form__button">Entrar</button>
         <div class="form__footer">
-            Não tem uma conta? <a href="register.html">Cadastre-se</a>
+            Não tem uma conta? <a href="/Sistema-de-Pedidos-Por-Telefone-em-PHP/register.php">Cadastre-se</a>
         </div>
     </form>
 </body>
