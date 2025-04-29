@@ -69,57 +69,17 @@ CREATE TABLE IF NOT EXISTS usuarios (
     b_ativo BOOLEAN DEFAULT TRUE
 );
 
--- Tabela de clientes
-CREATE TABLE IF NOT EXISTS clientes (
-    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    s_nome_cliente VARCHAR(100) NOT NULL,
-    s_telefone VARCHAR(20) NOT NULL,
-    s_endereco TEXT,
-    dt_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
-);
+CREATE TABLE `item_pedido` (
+  `i_id_pedido` int(11) NOT NULL,
+  `s_nome_pedido` varchar(255) NOT NULL,
+  `s_descricao_pedido` varchar(255) NOT NULL,
+  `i_qtd_pedido` int(11) NOT NULL,
+  `code_usuario` int(11) NOT NULL,
+  `data_hora` timestamp NOT NULL DEFAULT current_timestamp(),
+  `i_valor_pedido` decimal(6,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Tabela de categorias de produtos
-CREATE TABLE IF NOT EXISTS categorias (
-    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
-    s_nome_categoria VARCHAR(50) NOT NULL,
-    s_descricao TEXT
-);
 
--- Tabela de produtos
-CREATE TABLE IF NOT EXISTS produtos (
-    id_produto INT AUTO_INCREMENT PRIMARY KEY,
-    id_categoria INT,
-    s_nome_produto VARCHAR(100) NOT NULL,
-    s_descricao TEXT,
-    f_preco DECIMAL(10,2) NOT NULL,
-    b_disponivel BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
-);
-
--- Tabela de pedidos
-CREATE TABLE IF NOT EXISTS pedidos (
-    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT,
-    id_usuario INT,
-    dt_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
-    f_valor_total DECIMAL(10,2) NOT NULL,
-    s_status VARCHAR(20) DEFAULT 'pendente',
-    s_observacoes TEXT,
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
-    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
-);
-
--- Tabela de itens do pedido
-CREATE TABLE IF NOT EXISTS itens_pedido (
-    id_item INT AUTO_INCREMENT PRIMARY KEY,
-    id_pedido INT,
-    id_produto INT,
-    i_quantidade INT NOT NULL,
-    f_preco_unitario DECIMAL(10,2) NOT NULL,
-    f_subtotal DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido),
-    FOREIGN KEY (id_produto) REFERENCES produtos(id_produto)
-);
 ```
 
 ## Como Usar

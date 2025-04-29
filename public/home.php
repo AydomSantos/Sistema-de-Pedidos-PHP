@@ -18,156 +18,66 @@ $user_email = $_SESSION["user_email"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Sistema de Pedidos</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background-color: #4caf50;
-            color: white;
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .user-email {
-            margin-right: 15px;
-        }
-
-        .logout-btn {
-            background-color: #388e3c;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
         .logout-btn:hover {
             background-color: #2e7d32;
         }
-
-        .dashboard {
-            margin-top: 30px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 20px;
+        .card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
         }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .dashboard-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: #4caf50;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .card-description {
-            color: #666;
-            font-size: 0.9rem;
+        .card-link:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">Sistema de Pedidos</div>
-            <div class="user-info">
-                <span class="user-email"><?php echo htmlspecialchars($user_email); ?></span>
-                <a href="logout.php" class="logout-btn">Sair</a>
+<body class="bg-gray-100">
+    <header class="bg-green-600 text-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <div class="text-xl font-bold">Sistema de Pedidos</div>
+            <div class="flex items-center">
+                <span class="mr-4"><?php echo htmlspecialchars($user_email); ?></span>
+                <a href="logout.php" class="logout-btn bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition-colors">Sair</a>
             </div>
         </div>
     </header>
 
-    <div class="container">
-        <div class="dashboard">
-            <h1>Bem-vindo ao Sistema de Pedidos</h1>
-            <p>Selecione uma das opções abaixo para começar:</p>
+    <div class="container mx-auto mt-10 px-4">
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <h1 class="text-2xl font-bold text-gray-800 mb-4">Bem-vindo ao Sistema de Pedidos</h1>
+            <p class="text-gray-600 mb-6">Selecione uma das opções abaixo para começar:</p>
 
-            <div class="dashboard-cards">
-                <div class="card">
-                    <div class="card-icon">📋</div>
-                    <div class="card-title">Novo Pedido</div>
-                    <div class="card-description">Registrar um novo pedido no sistema</div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">🔍</div>
-                    <div class="card-title">Consultar Pedidos</div>
-                    <div class="card-description">Visualizar e gerenciar pedidos existentes</div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">👤</div>
-                    <div class="card-title">Clientes</div>
-                    <div class="card-description">Gerenciar cadastro de clientes</div>
-                </div>
-                
-                <div class="card">
-                    <div class="card-icon">📊</div>
-                    <div class="card-title">Relatórios</div>
-                    <div class="card-description">Gerar relatórios de vendas e pedidos</div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 - Novo Pedido -->
+                <a href="cadastra_pedidos.php" class="card-link bg-white p-6 rounded-lg shadow-md transform hover:translate-y-[-5px] transition-all duration-300 cursor-pointer">
+                    <div class="text-green-600 text-4xl mb-4">📋</div>
+                    <div class="text-xl font-semibold mb-2">Novo Pedido</div>
+                    <div class="text-gray-600">Registrar um novo pedido no sistema</div>
+                </a>
+
+                <!-- Card 2 - Consultar Pedidos -->
+                <a href="consulta_pedidos.php" class="card-link bg-white p-6 rounded-lg shadow-md transform hover:translate-y-[-5px] transition-all duration-300 cursor-pointer">
+                    <div class="text-green-600 text-4xl mb-4">🔍</div>
+                    <div class="text-xl font-semibold mb-2">Consultar Pedidos</div>
+                    <div class="text-gray-600">Visualizar e gerenciar pedidos existentes</div>
+                </a>
+
+                <!-- Card 3 - Clientes -->
+                <a href="clientes.php" class="card-link bg-white p-6 rounded-lg shadow-md transform hover:translate-y-[-5px] transition-all duration-300 cursor-pointer">
+                    <div class="text-green-600 text-4xl mb-4">👤</div>
+                    <div class="text-xl font-semibold mb-2">Clientes</div>
+                    <div class="text-gray-600">Gerenciar cadastro de clientes</div>
+                </a>
+
+                <!-- Card 4 - Relatórios -->
+                <a href="relatorios.php" class="card-link bg-white p-6 rounded-lg shadow-md transform hover:translate-y-[-5px] transition-all duration-300 cursor-pointer">
+                    <div class="text-green-600 text-4xl mb-4">📊</div>
+                    <div class="text-xl font-semibold mb-2">Relatórios</div>
+                    <div class="text-gray-600">Gerar relatórios de vendas e pedidos</div>
+                </a>
             </div>
         </div>
     </div>
